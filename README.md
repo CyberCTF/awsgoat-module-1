@@ -28,6 +28,11 @@ isoloom down cloud-services
 
 Upstream's EC2 instance is a t2.micro: an account on the AWS Free plan refuses it (only
 Free-Tier-eligible types such as t3.micro), so use an account on a paid plan.
+
+After `down`, the Lambda functions' log groups (`/aws/lambda/blog-application`,
+`/aws/lambda/blog-application-data`) remain: AWS made them, not Terraform. Delete them with
+`aws logs delete-log-group --log-group-name <name>`.
+
 Lab guide: [`app/attack-manuals/module-1/`](app/attack-manuals/module-1).
 
 Upstream version and commit: [UPSTREAM.md](UPSTREAM.md).
