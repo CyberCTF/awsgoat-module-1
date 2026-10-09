@@ -57,5 +57,14 @@
       }
     ]
   },
-  "message": null
+  "cloud": {
+    "provider": "aws",
+    "terraform": "app/modules/module-1",
+    "outputs": [
+      "app"
+    ],
+    "inputs": [],
+    "hourly_usd": 0.03
+  },
+  "message": "The blog answers at {{ cloud.outputs.app }}.\nStart as an outsider: register, look around, and find your way from the web application into\nthe AWS account. Walkthrough: app/attack-manuals/module-1/.\n"
 }
