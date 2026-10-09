@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# AWSGoat module 1 by INE (https://github.com/ine-labs/AWSGoat): a serverless blog (API Gateway,
+# Lambda, DynamoDB, S3) and an EC2 instance, vulnerable by design: XSS, SQL injection, IDOR,
+# SSRF on the Lambda environment, S3 misconfigurations and IAM privilege escalation.
+# Source in app/ (upstream, unchanged); the Terraform root is app/modules/module-1.
+# Run: `aws login`, then `isoloom run cloud-services`; end it with `isoloom down cloud-services`.
+version: 1
+name: awsgoat-module-1
+
+cloud:
+  provider: aws
+  terraform: app/modules/module-1
+  outputs:
+    app: app_url
+  hourly_usd: 0.03
+
+checks:
+  - name: the blog answers
+    http: "{{ cloud.outputs.app }}"
+    contains: AWSGoat
+    wait: 300
+  - name: the blog is wired to its bucket, API and seeded table
+    script: checks/blog.sh
+    wait: 120
+
+message: |
+  The blog answers at {{ cloud.outputs.app }}.
+  Start as an outsider: register, look around, and find your way from the web application into
+  the AWS account. Walkthrough: app/attack-manuals/module-1/.

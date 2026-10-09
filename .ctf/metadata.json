@@ -1,0 +1,8 @@
+{
+  "title": "AWSGoat: module 1",
+  "description": "A damn vulnerable AWS infrastructure by INE, deployed into your own AWS account: a serverless blog (API Gateway, Lambda, DynamoDB, S3) and an EC2 instance, with XSS, SQL injection, IDOR, SSRF on the Lambda environment, sensitive data exposure, S3 misconfigurations and IAM privilege escalation.",
+  "question": "Starting from the blog as an outsider, escalate to administrator access in the AWS account.",
+  "category": "MISC",
+  "difficulty": 2,
+  "evidence_kind": "SECRET"
+}
